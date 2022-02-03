@@ -32,9 +32,11 @@ Git命令对于很多新手来说不是特别友好，我们这里介绍几种�
 2、选中learn_git文件夹右键“open folder as Pycharm project”打开文件夹
 
 3、从上方工具栏中找到vcs(version control system)，选中Enable Version Control...
+
 ![](image_personal/image1.png)
 
 4、选中Git，点击ok
+
 ![](image_personal/image2.png)
 
 5、现在我们就拥有了一个本地的git仓库
