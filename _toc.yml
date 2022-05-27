@@ -1,0 +1,29 @@
+format: jb-book
+root: README.md
+parts:
+  - caption: 快速入门
+    chapters:
+      - file: 01_quick_start/README.md
+        sections:
+          - file: 01_quick_start/1_new_to_coding_devops/README.md
+          - file: 01_quick_start/1_new_to_coding_devops/1_create_project.md
+          - file: 01_quick_start/1_new_to_coding_devops/2_issues.md
+          - file: 01_quick_start/2_repositories/README.md
+          - file: 01_quick_start/2_repositories/1_init_and_commit.md
+          - file: 01_quick_start/2_repositories/2_pull_request.md
+          - file: 01_quick_start/3_ci/README.md
+  - caption: DevOps工具箱
+    chapters:
+      - file: 02_scrum/README.md
+      - file: 03_git/README.md
+      - file: 04_pipelines/README.md
+      - file: 05_artifacts/README.md
+      - file: 06_openapi/README.md
+  - caption: DevOps流程
+    chapters:
+      - file: 07_design_and_develop/README.md
+        sections:
+          - file: 07_design_and_develop/1_domain_driven_design/README.md
+          - file: 07_design_and_develop/2_testing_driven_design/README.md
+      - file: 08_ci_cd/README.md
+      - file: 09_release/README.md

@@ -1,0 +1,11 @@
+# qtclass configurations
+title: DevOps教程
+description: 基于腾讯云Coding平台和Python语言的DevOps教程
+author: 量潮科技
+level: introductory
+stage: dev
+tags:
+  - devops 
+  - python
+# jupyterbook configurations
+only_build_toc_files: true
