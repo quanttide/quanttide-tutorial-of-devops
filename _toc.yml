@@ -27,3 +27,12 @@ parts:
           - file: 07_design_and_develop/2_testing_driven_design/README.md
       - file: 08_ci_cd/README.md
       - file: 09_release/README.md
+  - caption: 具体领域实践
+    chapters: 
+      - file: microservices/README.md
+        sections: 
+          - file: microservices/api_based_collaboration/README.md
+            sections: 
+              - file: microservices/api_based_collaboration/api_design_first.md
+              - file: microservices/api_based_collaboration/api_testing.md
+              - file: microservices/api_based_collaboration/api_monitoring.md
