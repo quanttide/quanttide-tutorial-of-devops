@@ -21,10 +21,11 @@ parts:
       - file: 06_openapi/README.md
   - caption: DevOps流程
     chapters:
-      - file: 07_design_and_develop/README.md
+      - file: 07_design_develop_and_testing/README.md
         sections:
-          - file: 07_design_and_develop/1_domain_driven_design/README.md
-          - file: 07_design_and_develop/2_testing_driven_design/README.md
+          - file: 07_design_develop_and_testing/1_domain_driven_design/README.md
+          - file: 07_design_develop_and_testing/2_testing_driven_development/README.md
+          - file: 07_design_develop_and_testing/3_testing/README.md
       - file: 08_ci_cd/README.md
       - file: 09_release/README.md
   - caption: 具体领域实践
