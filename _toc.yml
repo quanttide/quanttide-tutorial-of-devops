@@ -13,7 +13,7 @@ parts:
             sections:
               - file: 01_quick_start/2_repositories/1_init_and_commit.md
               - file: 01_quick_start/2_repositories/2_pull_request.md
-          - file: 01_quick_start/3_ci/README.md
+          - file: 01_quick_start/3_intro_to_ci/README.md
   - caption: DevOps工具箱
     chapters:
       - file: 02_scrum/README.md
@@ -28,7 +28,6 @@ parts:
           - file: 03_git/2_team/README.md
             sections:
               - file: 03_git/2_team/2_1_manage_branch.md
-              - file: 03_git/2_team/2_2_github_flow.md
               - file: 03_git/2_team/2_3_common_problems.md
           - file: 03_git/3_workflow/README.md
             sections: 
@@ -42,13 +41,13 @@ parts:
       - file: 04_pipelines/README.md
         sections:
           - file: 04_pipelines/ci.md
-          - file: 04_pipelines/testing.md
+          - file: 04_pipelines/auto_testing.md
           - file: 04_pipelines/delivery.md
           - file: 04_pipelines/deploy.md
       - file: 05_artifacts/README.md
       - file: 06_openapi/README.md
         sections:
-          - file: 06_openapi/openapi.md
+          - file: 06_openapi/intro_to_openapi.md
   - caption: DevOps流程
     chapters:
       - file: 07_design_develop_and_testing/README.md
