@@ -1,21 +1,26 @@
 # Git工作流
 
+## 量潮分支规范
+
+- 主干分支与 GitHub 对齐，使用 `main`，逐步弃用 `master` 但保持必要兼容。
+- 分支规则以 **GitHub Flow** 为主，主干分支为辅。
+
 ## 参考资料
 
 ### Git Flow
 
-Bitbucket提供的介绍：https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
+Bitbucket 介绍：https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
 
 ### GitHub Flow
 
-GitHub官方提供的介绍：https://guides.github.com/introduction/flow/
+GitHub 官方介绍：https://guides.github.com/introduction/flow/
 
 ### GitLab Flow
 
-GitLab官方提供的介绍：https://docs.gitlab.com/ee/topics/gitlab_flow.html
+GitLab 官方介绍：https://docs.gitlab.com/ee/topics/gitlab_flow.html
 
 ### 拓展
 
-GitLab提供的关于Git workflow的分类：https://about.gitlab.com/topics/version-control/what-is-git-workflow/
+GitLab 关于 Git workflow 的分类：https://about.gitlab.com/topics/version-control/what-is-git-workflow/
 
-Bitbucket提供的更详细的介绍（内容比较陌生）：https://www.atlassian.com/git/tutorials/comparing-workflows
+Bitbucket 详细介绍：https://www.atlassian.com/git/tutorials/comparing-workflows/
