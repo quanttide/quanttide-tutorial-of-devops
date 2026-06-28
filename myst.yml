@@ -38,7 +38,7 @@ project:
               children:
                 - file: 03_git/2_team/2_1_manage_branch.md
                 - file: 03_git/2_team/2_3_common_problems.md
-            - file: 03_git/3_workflow/README.md
+            - file: 03_git/3_workflow/index.md
               children:
                 - file: 03_git/3_workflow/3_1_git_flow.md
                 - file: 03_git/3_workflow/3_2_github_flow.md
