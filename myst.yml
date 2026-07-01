@@ -66,13 +66,6 @@ project:
             - file: 07_design_develop_and_testing/3_testing/README.md
         - file: 08_ci_cd/README.md
         - file: lifecycle/release/README.md
-          children:
-            - file: lifecycle/release/semvar/README.md
-              children:
-                - file: lifecycle/release/semvar/general.md
-                - file: lifecycle/release/semvar/private_versions.md
-                - file: lifecycle/release/semvar/prerelease_versions.md
-                - file: lifecycle/release/semvar/tools.md
 
 site:
   template: book-theme
