@@ -23,7 +23,7 @@ project:
                 - file: 01_quick_start/2_repositories/1_init_and_commit.md
                 - file: 01_quick_start/2_repositories/2_pull_request.md
             - file: 01_quick_start/3_intro_to_ci/README.md
-    - title: DevOps工具箱
+    - title: 工具箱
       children:
         - file: 02_scrum/README.md
           children:
@@ -57,14 +57,8 @@ project:
         - file: 06_openapi/README.md
           children:
             - file: 06_openapi/intro_to_openapi.md
-    - title: DevOps生命周期
+    - title: 生命周期
       children:
-        - file: 07_design_develop_and_testing/README.md
-          children:
-            - file: 07_design_develop_and_testing/1_domain_driven_design/README.md
-            - file: 07_design_develop_and_testing/2_testing_driven_development/README.md
-            - file: 07_design_develop_and_testing/3_testing/README.md
-        - file: 08_ci_cd/README.md
         - file: lifecycle/release/index.md
           children:
             - file: lifecycle/release/version.md
