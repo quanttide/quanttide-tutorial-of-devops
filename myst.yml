@@ -59,6 +59,7 @@ project:
             - file: 06_openapi/intro_to_openapi.md
     - title: 生命周期
       children:
+        - file: lifecycle/index.md 
         - file: lifecycle/release/index.md
           children:
             - file: lifecycle/release/version.md
