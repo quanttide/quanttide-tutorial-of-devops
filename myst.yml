@@ -67,12 +67,7 @@ project:
         - file: 08_ci_cd/README.md
         - file: lifecycle/release/index.md
           children:
-            - file: lifecycle/release/semvar/index.md
-              children:
-                - file: lifecycle/release/semvar/general.md
-                - file: lifecycle/release/semvar/private_versions.md
-                - file: lifecycle/release/semvar/prerelease_versions.md
-                - file: lifecycle/release/semvar/tools.md
+            - file: lifecycle/release/version.md
 
 site:
   template: book-theme
