@@ -140,4 +140,4 @@ project/
 ## 参考
 
 - [Monorepo 模式](https://monorepo.tools/) — 关于 monorepo 的工具和实践（英文）
-- [量潮默认单仓规范](/cli/docs/contract/monorepo.md) — 具体的目录布局约定
+
