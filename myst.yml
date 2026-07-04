@@ -10,6 +10,10 @@ project:
   source: https://github.com/quanttide/quanttide-tutorial-of-devops/tree/main
   toc:
     - file: README.md
+    - title: 实践理念
+      children:
+        - file: intro/index.md
+        - file: intro/gitops.md
     - title: 快速入门
       children:
         - file: 01_quick_start/README.md
@@ -57,12 +61,20 @@ project:
         - file: 06_openapi/README.md
           children:
             - file: 06_openapi/intro_to_openapi.md
+    - title: 合约
+      children:
+        - file: contract/scope.md
     - title: 生命周期
       children:
-        - file: lifecycle/index.md 
+        - file: lifecycle/index.md
+        - file: lifecycle/plan/index.md
+          children:
+            - file: lifecycle/plan/roadmap.md
+            - file: lifecycle/plan/todo.md
         - file: lifecycle/release/index.md
           children:
             - file: lifecycle/release/version.md
+            - file: lifecycle/release/changelog.md
 
 site:
   template: book-theme
