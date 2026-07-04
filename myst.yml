@@ -32,7 +32,7 @@ project:
         - file: 02_scrum/README.md
           children:
             - file: 02_scrum/milestone.md
-        - file: 03_git/README.md
+        - file: 03_git/index.md
           children:
             - file: 03_git/1_personal/README.md
               children:
