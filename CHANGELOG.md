@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [0.3.1] - 2026-07-04
+
+### Added
+- 新增 monorepo 入门教程（intro/monorepo.md）
+
+### Changed
+- myst.yml：调整 TOC 结构，monorepo 归入快速入门
+
 ## [0.3.0] - 2026-07-04
 
 ### Added
