@@ -51,13 +51,6 @@ project:
               children:
                 - file: 03_git/4_advanced/access_git_repo_with_token.md
                 - file: 03_git/4_advanced/clean_private_secrets.md
-        - file: 04_pipelines/README.md
-          children:
-            - file: 04_pipelines/ci.md
-            - file: 04_pipelines/auto_testing.md
-            - file: 04_pipelines/delivery.md
-            - file: 04_pipelines/deploy.md
-        - file: 05_artifacts/README.md
     - title: 合约
       children:
         - file: contract/scope.md
