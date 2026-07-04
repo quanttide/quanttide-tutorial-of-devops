@@ -1,170 +1,143 @@
 # Monorepo 入门
 
-## 你要解决什么问题
+## 什么是 monorepo
 
-你在开发 `qtcloud-devops` 这个 CLI 工具，它需要管理一个包含多个组件的代码仓库。假设仓库长这样：
+Monorepo（单一仓库）是把多个项目的代码放在同一个 Git 仓库里管理的策略。
 
-```
-qtcloud-devops/
-├── src/cli/       ← 一个 Rust CLI 应用
-├── src/web/       ← 一个 TypeScript 前端
-├── packages/sdk/  ← 一个 Rust 库
-└── apps/api/      ← 一个 Python 后端服务
-```
-
-每个组件有自己的版本号、自己的构建命令、自己的发布节奏。但它们在同一个 Git 仓库里——monorepo。
-
-你需要设计一种方式，让工具能理解"仓库里有几个组件，每个组件在哪、用什么语言、怎么发版"。
-
-这就是 scope 要解决的问题。
-
-## 什么是 scope
-
-Scope 就是一个命名边界。它把一个名字（`cli`）绑定到一个目录（`src/cli`）。
+**多仓库**（每个项目独立建仓）：
 
 ```
-Scope {
-    name: "cli",          ← 名字，也是 tag 前缀
-    dir: "src/cli",       ← 对应目录
-    language: "rust",     ← 编程语言
-    build_tool: "cargo",  ← 构建工具
-    registry: "crates",   ← 制品库
-}
+github.com/your-org/cli
+github.com/your-org/web
+github.com/your-org/api
 ```
 
-有了 scope，工具就能回答三个问题：
-
-| 问题 | 答案 |
-|------|------|
-| `cli` 的代码在哪？ | `src/cli/` |
-| `cli` 的版本号在哪？ | `src/cli/Cargo.toml` |
-| `cli` 的 tag 叫什么？ | `cli/v0.1.0` |
-
-## 为什么 scope 是必要的
-
-没有 scope 时，整个仓库只有一个版本号：
+**Monorepo**（所有项目在一个仓）：
 
 ```
-v0.1.0          ← 这是谁的版本？CLI 的？API 的？
+your-project/
+├── cli/
+├── web/
+└── api/
 ```
 
-发了 `v0.1.0`，但 API 没改代码也被迫跟着发版。代码没改却升了版本，不合理。
+就这么简单——一个仓库、多个目录、各管各的。
 
-加 scope 前缀后：
+## 为什么用 monorepo
+
+多仓库的痛点：
+
+- 改一个跨组件的功能要串行提三四个 PR
+- 全局搜索搜不全，忘了代码在哪个仓库
+- 版本依赖只能靠文档喊话，没人看
+- 新人入职要 clone 五六个仓库才能开始干活
+
+Monorepo 的做法：
+
+- 一个 PR 改完所有相关代码，一起审
+- 一条 `grep` 搜遍所有代码
+- 版本信息写在同一个仓库的配置里，不需要跨仓库对齐
+- clone 一次就够了
+
+## monorepo 的挑战
+
+好处说完说代价。Monorepo 最大的问题是**区分**——一个仓库里的不同组件需要独立管理。
+
+### 版本号冲突
+
+如果没有约定，整个仓库只有一个版本号：
 
 ```
-cli/v0.1.0      ← CLI 的 v0.1.0
-sdk/v0.1.0      ← SDK 的 v0.1.0，可以和 CLI 同号
-api/v0.2.0      ← API 的 v0.2.0，独立版本
+v0.1.0
 ```
 
-同一仓库内，不同组件可以有不同的最新版本。
+但这个版本号是 CLI 的？API 的？还是整个仓库的？说不清。
 
-## 三个核心设计决策
+**做法**：tag 加前缀。
 
-### 1. 用 tag 前缀做命名空间
-
-Git tag 本身只是字符串，前缀就是最简单的命名空间。
-
-```rust
-// 创建 tag 时，scope 名就是前缀
-let tag_name = format!("{}/v{}", scope.name, version);
-// → "cli/v0.1.0"
-
-// 解析 tag 时，按前缀分组
-let scope_name = tag.split('/').next();
-// → "cli"
+```
+cli/v0.1.0       ← CLI 的版本
+api/v0.3.0       ← API 的版本，和 CLI 不同
 ```
 
-不需要额外的数据库或配置文件来记录"哪个 tag 属于谁"。
+同一个版本号可以在不同组件里各用各的。
 
-### 2. 操作路径 = scope.dir
+### 目录太大
 
-所有文件操作（读版本号、写 CHANGELOG、更新配置文件）都以 scope 的目录为根：
+代码多了，`git clone` 越来越慢。早期可以忍，真到忍不了的时候用 `git sparse-checkout` 只拉需要的目录。
 
-```rust
-let scope_dir = repo_path.join(&scope.dir);
-let config_path = scope_dir.join("Cargo.toml");      // src/cli/Cargo.toml
-let changelog_path = scope_dir.join("CHANGELOG.md");  // src/cli/CHANGELOG.md
+```
+git sparse-checkout set cli/ api/
 ```
 
-根目录的操作路径就是 repo 根：
+### CI 触发频繁
 
-```rust
-let config_path = repo_path.join("Cargo.toml");       // Cargo.toml
-```
-
-### 3. 回退行为决定布局规范
-
-当没有契约文件时，工具需要自动发现 scope。扫描哪些目录？
-
-你选择了三个：
-
-```rust
-let scan_dirs = &["src", "packages", "apps"];
-```
-
-这不是随意的。回顾你的仓库结构：
-
-| 目录 | 组件类型 | 为什么放在这里 |
-|------|---------|---------------|
-| `src/*` | 应用模块 | CLI 这种随主应用一起发的功能模块 |
-| `packages/*` | 库包 | SDK 这类可以独立发版的库 |
-| `apps/*` | 独立部署的应用 | 需要独立发布、独立运行的服务 |
-
-这三个目录覆盖了 monorepo 里最常见的组件类型。这就是量潮的**默认单仓规范**。
-
-## Scope 的完整数据流
-
-当你实现 `release publish` 时，scope 贯穿整个流程：
-
-```text
-输入: cli/v0.2.0
-         │
-         ▼
-  1. 从版本号提取 scope 名: "cli"
-         │
-         ▼
-  2. 查契约 → 找 name="cli" 的 scope
-         │
-         ▼
-  3. 取 scope.dir → "src/cli"
-         │
-         ▼
-  4. 更新 src/cli/Cargo.toml 的版本号
-         │
-         ▼
-  5. 更新 src/cli/CHANGELOG.md
-         │
-         ▼
-  6. git commit（在仓库根执行）
-         │
-         ▼
-  7. git tag cli/v0.2.0
-         │
-         ▼
-  8. git push origin cli/v0.2.0
-```
-
-每一步中，scope 都在回答"操作的路径在哪"和"tag 叫什么"。
-
-## 契约文件
-
-上述的 scope 定义存放在 `.quanttide/devops/contract.yaml` 中：
+任何目录的改动都会触发全部 CI。解法是按路径过滤：
 
 ```yaml
-scopes:
-  cli:
-    dir: src/cli
-    language: rust
-    build_tool: cargo
-    registry: crates
+# GitHub Actions
+on:
+  push:
+    paths:
+      - 'cli/**'
+      - 'api/**'
 ```
 
-没有这个文件时，工具自动扫描 `src/*`、`packages/*`、`apps/*` 下的项目配置文件来推断 scope——也就是默认单仓规范。
+## 常见的 monorepo 布局
+
+Monorepo 怎么组织目录取决于组件类型。这是几种常见风格：
+
+**按功能分（`src/`）**
+
+```
+project/
+└── src/
+    ├── cli/          命令行工具
+    ├── web/          前端页面
+    └── core/         公共库
+```
+
+适合应用代码，所有模块最终集成在一起发布。
+
+**按包分（`packages/`）**
+
+```
+project/
+└── packages/
+    ├── utils/        工具函数
+    ├── components/    UI 组件
+    └── config/        配置规则
+```
+
+适合库和 SDK 的 workspace。
+
+**按应用分（`apps/`）**
+
+```
+project/
+└── apps/
+    ├── admin/        管理后台
+    ├── api/          REST 服务
+    └── worker/       后台任务
+```
+
+适合独立部署的服务，每个目录都是一个可运行的应用。
+
+这三种可以混用——一个仓库同时有 `src/`、`packages/`、`apps/` 分别管理不同类型的组件。
+
+## monorepo 适合谁
+
+**适合**：
+- 项目早期到中期，团队几十人以内
+- 组件之间有紧密的依赖关系
+- 你想减少"跨仓库沟通"的管理成本
+
+**不适合**：
+- 组件之间几乎没有依赖（强行放一起没有意义）
+- 不同组件的权限需要严格隔离（如核心业务 vs 实验性项目）
+- 不同组件的发布节奏差异极大（底层库每天发版，上层应用每月发版）
 
 ## 参考
 
-- [默认单仓规范](/cli/docs/contract/monorepo.md) — 布局约定完整定义
-- [Scope 详解](/cli/docs/contract/scope.md) — scope 结构、路径匹配、配置继承
-- [契约解析](/cli/docs/contract/config.md) — contract.yaml 格式和覆盖语义
+- [Monorepo 模式](https://monorepo.tools/) — 关于 monorepo 的工具和实践（英文）
+- [量潮默认单仓规范](/cli/docs/contract/monorepo.md) — 具体的目录布局约定
