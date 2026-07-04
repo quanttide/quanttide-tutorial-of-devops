@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [0.2.0] - 2026-07-04
+
+### Added
+- 新增实践理念章节（intro/），包含 DevOps 实践理念概述和 GitOps 教程
+- 新增合约章节（contract/），包含 scope 概念教程
+- 新增计划教程（lifecycle/plan/），覆盖核心理念、ROADMAP 格式、TODO 拆解
+- 新增 CHANGELOG 教程（lifecycle/release/changelog.md）
+
+### Changed
+- 重构计划教程结构：分离 ROADMAP 格式参考与计划思路，scope FAQ 移入合约章节
+
 ## [0.1.3] - 2026-07-02
 
 ### Added
