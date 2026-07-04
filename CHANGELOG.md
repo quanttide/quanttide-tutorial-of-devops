@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [0.3.2] - 2026-07-04
+
+### Changed
+- lifecycle 从 stage/ 移至 intro/
+
 ## [0.3.1] - 2026-07-04
 
 ### Added
