@@ -29,12 +29,10 @@ ROADMAP.md 是量潮 DevOps 的规划文件，位于每个 scope 的根目录，
 
 ### 语法规则
 
-| 元素 | 格式 | 说明 |
-|------|------|------|
-| 版本标题 | `## [X.Y.Z]` | 可选后缀如 `— 已发布` |
-| 分类标题 | `### Added / Changed / Fixed / Removed / Deprecated / Security` | 保持首字母大写 |
-| 已完成 | `- [x] xxx` | 小写 `x`，与 checkbox 标准一致 |
-| 未完成 | `- [ ] xxx` | 方括号内为空格 |
+- **版本标题** — `## [X.Y.Z]`，可选后缀如 `— 已发布`
+- **分类标题** — `### Added / Changed / Fixed / Removed / Deprecated / Security`，保持首字母大写
+- **已完成** — `- [x] xxx`，小写 `x`，与 checkbox 标准一致
+- **未完成** — `- [ ] xxx`，方括号内为空格
 
 ## 命令
 
