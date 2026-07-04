@@ -27,7 +27,7 @@
 
 格式说明和操作命令详见[规划文件](roadmap.md)。
 
-从开发日志生成任务清单详见 [TODO](todo.md)。
+将 ROADMAP 目标拆解为具体执行任务详见 [TODO](todo.md)。
 
 ## 常见问题
 
