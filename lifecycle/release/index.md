@@ -49,7 +49,7 @@
 - 修复描述
 ```
 
-格式遵循 Keep a Changelog 规范。变更按 Added、Changed、Fixed、Removed 分类。
+格式遵循 [Keep a Changelog](changelog.md) 规范。变更按 Added、Changed、Fixed、Removed 分类，详见 [CHANGELOG 教程](changelog.md)。
 
 ### 3. 提交修改
 
