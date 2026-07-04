@@ -26,4 +26,3 @@ scopes:
 - **构建**：每个 scope 可以使用不同的语言和构建工具
 - **发布**：scope 可以独立发布，互不影响
 
-详细配置参考 [Scope 配置](../../specification/contract/scope.md)。
