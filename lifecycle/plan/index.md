@@ -10,6 +10,14 @@
 
 规划的核心产物是一份与代码同仓的规划文件。它伴随代码一起维护，每次提交前清理已完成条目，保持规划整洁。
 
+### 路线图与里程碑
+
+规划文件是一个**路线图（roadmap）**——描述整体计划、版本间的依赖关系和交付时间线。每个版本标题（`## [X.Y.Z]`）是路线图上的一个**里程碑（milestone）**——标记某个阶段的关键节点或交付物。
+
+> Imagine having a map with no checkpoints. So you know where you're starting your journey and where you need to get, but you don't know what you're supposed to do on your path there.
+
+路线图告诉你方向，里程碑告诉你走到哪了。
+
 规划不是一次性工作，而是伴随每次迭代持续更新：
 
 ```text
