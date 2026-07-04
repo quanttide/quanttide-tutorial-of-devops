@@ -57,14 +57,15 @@ project:
     - title: 生命周期
       children:
         - file: lifecycle/index.md
-        - file: lifecycle/plan/index.md
-          children:
-            - file: lifecycle/plan/roadmap.md
-            - file: lifecycle/plan/todo.md
-        - file: lifecycle/release/index.md
-          children:
-            - file: lifecycle/release/version.md
-            - file: lifecycle/release/changelog.md
+        stage/index.md
+                - file: stage/plan/index.md
+                  children:
+                    - file: stage/plan/roadmap.md
+                    - file: stage/plan/todo.md
+                - file: stage/release/index.md
+                  children:
+                    - file: stage/release/version.md
+                    - file: stage/release/changelog.md
 
 site:
   template: book-theme
