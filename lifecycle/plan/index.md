@@ -1,10 +1,10 @@
 # 计划
 
-本节介绍如何使用 ROADMAP.md 和 `qtcloud-devops plan` 命令管理版本规划。
+本节介绍如何用 `qtcloud-devops plan` 命令管理版本规划。
 
 ## 核心理念：规划即文档
 
-规划不只是在项目管理工具里建任务。在量潮 DevOps 流程中，规划的核心产物是 **ROADMAP.md**——一份与代码同仓的规划文件。
+规划不只是在项目管理工具里建任务。在量潮 DevOps 流程中，规划的核心产物是 **ROADMAP.md**——一份与代码同仓的规划文件，伴随代码一起维护。
 
 ROADMAP 回答三个问题：
 
@@ -12,47 +12,7 @@ ROADMAP 回答三个问题：
 - **已经做了什么** — 已完成的 checkbox
 - **下个版本打算做什么** — 下一个版本标题下的条目
 
-规划文件放在 scope 根目录，伴随代码一起维护。每次提交前清理已完成条目，保持规划整洁。
-
-## ROADMAP 格式
-
-### 文件位置
-
-ROADMAP.md 位于每个 scope 的根目录，与代码同仓管理。
-
-### 格式规则
-
-使用 Keep a Changelog 风格 + checkbox 任务清单：
-
-```markdown
-# ROADMAP
-
-> 格式：Keep a Changelog + checkbox 任务清单。
-
-## [0.2.0]
-
-### Added
-- [ ] new feature a
-- [ ] new feature b
-
-### Fixed
-- [x] bug fix
-
-## [0.1.0]
-
-### Added
-- [x] release plan
-- [x] test coverage
-```
-
-语法规则：
-
-| 元素 | 格式 | 说明 |
-|------|------|------|
-| 版本标题 | `## [X.Y.Z]` | 可选后缀如 `— 已发布` |
-| 分类标题 | `### Added / Changed / Fixed / Removed / Deprecated / Security` | 保持首字母大写 |
-| 已完成 | `- [x] xxx` | 小写 `x`，与 checkbox 标准一致 |
-| 未完成 | `- [ ] xxx` | 方括号内为空格 |
+格式说明详见 [ROADMAP 格式](roadmap.md)。
 
 ## 操作流程
 
@@ -108,13 +68,7 @@ qtcloud-devops plan status cli
 qtcloud-devops plan doctor [scope]
 ```
 
-只读检查，不会修改文件。检出的问题包括：
-
-- 版本号缺少 `v` 前缀
-- 分类标题大小写错误（如 `added` 应为 `Added`）
-- checkbox 格式不规范（如 `[*]` 而非 `[x]`）
-
-发现问题后手动修复，或交由 LLM 协助修复。
+只读检查，不会修改文件。发现问题后手动修复，或交由 LLM 协助修复。常见格式问题清单见 [ROADMAP 格式](roadmap.md#常见格式问题)。
 
 ### 4. 清理已完成条目
 
