@@ -27,8 +27,13 @@ project:
                 - file: platform/github/repositories/init_and_commit.md
                 - file: platform/github/repositories/pull_request.md
             - file: platform/github/ci/index.md
-    - title: 源代码
+    - title: 事实源
       children:
+        - file: source/conventions/index.md
+          children:
+            - file: source/conventions/roadmap.md
+            - file: source/conventions/todo.md
+            - file: source/conventions/changelog.md
         - file: source/git/index.md
           children:
             - file: source/git/personal/README.md
@@ -48,6 +53,7 @@ project:
               children:
                 - file: source/git/advanced/access_git_repo_with_token.md
                 - file: source/git/advanced/clean_private_secrets.md
+        - file: source/config/index.md
     - title: 合约
       children:
         - file: contract/scope.md
@@ -55,13 +61,7 @@ project:
       children:
         - file: stage/index.md
         - file: stage/plan/index.md
-          children:
-            - file: stage/plan/roadmap.md
-            - file: stage/plan/todo.md
         - file: stage/release/index.md
-          children:
-            - file: stage/release/version.md
-            - file: stage/release/changelog.md
 
 site:
   template: book-theme

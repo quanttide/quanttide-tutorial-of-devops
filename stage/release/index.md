@@ -12,7 +12,7 @@
 
 ## 版本号规则
 
-遵循语义化版本规范（SemVer）。正式版格式 `vX.Y.Z`，预发布版按开发阶段依次使用 `-alpha.N`、`-beta.N`、`-rc.N` 后缀。
+遵循[语义化版本](version.md)规范（SemVer）。正式版格式 `vX.Y.Z`，预发布版按开发阶段依次使用 `-alpha.N`、`-beta.N`、`-rc.N` 后缀。
 
 ## 操作前检查
 
@@ -49,7 +49,7 @@
 - 修复描述
 ```
 
-格式遵循 [Keep a Changelog](changelog.md) 规范。变更按 Added、Changed、Fixed、Removed 分类，详见 [CHANGELOG 教程](changelog.md)。
+格式遵循 [Keep a Changelog](../../source/conventions/changelog.md) 规范。变更按 Added、Changed、Fixed、Removed 分类，详见 [CHANGELOG 教程](../../source/conventions/changelog.md)。
 
 ### 3. 提交修改
 
