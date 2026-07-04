@@ -58,9 +58,6 @@ project:
             - file: 04_pipelines/delivery.md
             - file: 04_pipelines/deploy.md
         - file: 05_artifacts/README.md
-        - file: 06_openapi/README.md
-          children:
-            - file: 06_openapi/intro_to_openapi.md
     - title: 合约
       children:
         - file: contract/scope.md
