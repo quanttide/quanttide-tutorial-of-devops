@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## [0.3.0] - 2026-07-04
+
+### Added
+- 新增制品库章节（platform/registry/），覆盖 PyPI、crates.io、pub.dev
+- 新增配置文件事实源章节（source/config/）
+- 新增约定文件事实源章节（source/conventions/），整合 ROADMAP、TODO、CHANGELOG 格式参考
+
+### Changed
+- 全面重构目录结构：lifecycle→stage、03_git→source/git、01_quick_start→platform/github（重写为 GitHub 内容）
+- 拆分事实源与阶段：格式参考归 source/conventions/，操作流程归 stage/
+- version.md 移回 stage/release/
+- 03_git/README.md→index.md
+
+### Removed
+- 移除 02_scrum、04_pipelines、05_artifacts、06_openapi 目录
+
 ## [0.2.0] - 2026-07-04
 
 ### Added
