@@ -16,17 +16,17 @@ project:
         - file: intro/gitops.md
     - title: 快速入门
       children:
-        - file: platform/index.md
+        - file: platform/github/index.md
           children:
-            - file: platform/get_started/index.md
+            - file: platform/github/get_started/index.md
               children:
-                - file: platform/get_started/create_repository.md
-                - file: platform/get_started/issues.md
-            - file: platform/repositories/index.md
+                - file: platform/github/get_started/create_repository.md
+                - file: platform/github/get_started/issues.md
+            - file: platform/github/repositories/index.md
               children:
-                - file: platform/repositories/init_and_commit.md
-                - file: platform/repositories/pull_request.md
-            - file: platform/ci/index.md
+                - file: platform/github/repositories/init_and_commit.md
+                - file: platform/github/repositories/pull_request.md
+            - file: platform/github/ci/index.md
     - title: 源代码
       children:
         - file: source/git/index.md
