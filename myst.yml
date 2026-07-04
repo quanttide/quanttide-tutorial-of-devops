@@ -10,25 +10,11 @@ project:
   source: https://github.com/quanttide/quanttide-tutorial-of-devops/tree/main
   toc:
     - file: README.md
-    - title: 实践理念
+    - title: 快速入门
       children:
         - file: intro/index.md
         - file: intro/gitops.md
         - file: intro/monorepo.md
-    - title: 快速入门
-      children:
-        - file: platform/github/index.md
-          children:
-            - file: platform/github/get_started/index.md
-              children:
-                - file: platform/github/get_started/create_repository.md
-                - file: platform/github/get_started/issues.md
-            - file: platform/github/repositories/index.md
-              children:
-                - file: platform/github/repositories/init_and_commit.md
-                - file: platform/github/repositories/pull_request.md
-            - file: platform/github/ci/index.md
-        - file: platform/registry/index.md
     - title: 事实源
       children:
         - file: source/conventions/index.md
@@ -56,14 +42,28 @@ project:
                 - file: source/git/advanced/access_git_repo_with_token.md
                 - file: source/git/advanced/clean_private_secrets.md
         - file: source/config/index.md
-    - title: 合约
+    - title: 平台
       children:
-        - file: contract/scope.md
+        - file: platform/github/index.md
+          children:
+            - file: platform/github/get_started/index.md
+              children:
+                - file: platform/github/get_started/create_repository.md
+                - file: platform/github/get_started/issues.md
+            - file: platform/github/repositories/index.md
+              children:
+                - file: platform/github/repositories/init_and_commit.md
+                - file: platform/github/repositories/pull_request.md
+            - file: platform/github/ci/index.md
+        - file: platform/registry/index.md
     - title: 阶段
       children:
         - file: stage/index.md
         - file: stage/plan/index.md
         - file: stage/release/index.md
+    - title: 契约
+      children:
+        - file: contract/scope.md
 
 site:
   template: book-theme
