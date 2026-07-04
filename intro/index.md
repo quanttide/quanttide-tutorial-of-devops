@@ -36,10 +36,3 @@ Git tag       →  发版本
 
 合约、规划、执行、变更记录都在同一个仓库里，版本一起走，PR 一起审，不用跨系统追状态。
 
----
-
-详见各章节：
-
-- [GitOps](gitops.md) — 以特殊文件为事实源的 GitOps 实践
-- [合约（contract）](../contract/scope.md) — scope 定义与配置
-- [生命周期](../lifecycle/) — 从计划到发布的完整流程
