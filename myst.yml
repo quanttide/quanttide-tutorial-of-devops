@@ -14,6 +14,7 @@ project:
       children:
         - file: intro/index.md
         - file: intro/gitops.md
+        - file: intro/monorepo.md
     - title: 快速入门
       children:
         - file: platform/github/index.md
