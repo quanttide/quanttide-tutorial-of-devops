@@ -27,6 +27,7 @@ project:
                 - file: platform/github/repositories/init_and_commit.md
                 - file: platform/github/repositories/pull_request.md
             - file: platform/github/ci/index.md
+        - file: platform/registry/index.md
     - title: 事实源
       children:
         - file: source/conventions/index.md
