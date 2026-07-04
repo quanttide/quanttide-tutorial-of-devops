@@ -15,6 +15,7 @@ project:
         - file: intro/index.md
         - file: intro/gitops.md
         - file: intro/monorepo.md
+        - file: intro/lifecycle.md
     - title: 事实源
       children:
         - file: source/conventions/index.md
@@ -58,7 +59,6 @@ project:
         - file: platform/registry/index.md
     - title: 阶段
       children:
-        - file: stage/index.md
         - file: stage/plan/index.md
         - file: stage/release/index.md
     - title: 契约
