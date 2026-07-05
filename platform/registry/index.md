@@ -19,7 +19,7 @@ scopes:
     language: dart
     registry: pubdev
   toolkit:
-    dir: packages/toolkit
+    dir: packages/quanttide-devops-toolkit
     language: python
     registry: pypi
 ```
