@@ -77,3 +77,6 @@ gh release create v0.2.0 \
   --notes "CHANGELOG 内容粘贴到这里"
 ```
 
+## 延伸阅读
+
+- [异常情况](exception.md) — 缺 Release、缺 CHANGELOG、孤立 tag 等场景的处理方式
