@@ -132,20 +132,6 @@ Tag 属于某个 scope（如 `cli`）但漏写了 scope 前缀，被打成根级
    gh release create cli/v0.1.0-rc.1 --title "cli/v0.1.0-rc.1" --notes "..."
    ```
 
-## 六、CHANGELOG.md 中的 URL 版本号被误判
-
-`extractFirstVersion` 使用正则 `\[\s*v?(\d+\.\d+\.\d+)\s*\]` 从 CHANGELOG.md 中提取最新版本号，只匹配 `[X.Y.Z]` 格式的版本头，不会误抓正文中的 URL。
-
-但工具早期版本使用更宽的正则 `v?\d+\.\d+\.\d+`，会匹配到 CHANGELOG.md 中引用的 Keep a Changelog 链接：
-
-```markdown
-The format is based on [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)。
-```
-
-其中 `1.0.0` 被匹配为版本号，产生假阳性。
-
-**处理方式**：确保扫描工具使用 `[X.Y.Z]` 格式匹配，而非任意位置的正则搜索。
-
 ## 七、废弃的 Draft Release 污染
 
 早期开发阶段创建的 Draft Release 不遵循 scope 前缀约定（如 `0.1.0-beta.1`、`0.1.0-beta.2`），且可能缺少 `v` 前缀。这些 Draft Release 没有对应的 tag，但会被自动化扫描误认为是根级别发布。
