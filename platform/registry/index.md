@@ -24,4 +24,4 @@ scopes:
     registry: pypi
 ```
 
-各制品库的发布流程由对应的 CI workflow 处理，详见[阶段](../stage/release/index.md)。
+各制品库的发布流程由对应的 CI workflow 处理，详见[发布阶段](../../stage/release/index.md)。

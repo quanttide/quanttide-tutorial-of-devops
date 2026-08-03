@@ -1,6 +1,8 @@
-# 异常情况
+# 发布异常
 
 ## 处理规则
+
+发布异常处理的目标是恢复事实源一致，而不是把一个失败版本包装成成功版本。
 
 以下四条核心假设指导所有异常情况下的判断。
 
@@ -29,13 +31,19 @@ CHANGELOG 是人工维护的结构化文档，有分类、有上下文、有格�
 
 ### 关系不可逆
 
-发布生命周期的依赖方向：
+发布生命周期的基础依赖方向：
 
 ```
 commit → tag → CHANGELOG → Release
 ```
 
-异常处理的方向是逆向追溯——缺什么就从左侧最近的事实源开始补。
+如果版本还发布到 registry、镜像仓库或二进制资产，还要继续检查：
+
+```text
+Release → registry / image / binary assets / internal artifacts
+```
+
+异常处理的方向是逆向追溯。缺什么就从左侧最近的可信事实源开始补；无法确认的部分先搁置，不要编造。
 
 ## 一、缺 GitHub Release，但 tag + CHANGELOG 齐备
 
@@ -132,7 +140,64 @@ Tag 属于某个 scope（如 `cli`）但漏写了 scope 前缀，被打成根级
    gh release create cli/v0.1.0-rc.1 --title "cli/v0.1.0-rc.1" --notes "..."
    ```
 
-## 七、废弃的 Draft Release 污染
+## 六、registry 发布失败
+
+这种情况常见于 crates.io、PyPI、npm、pub.dev 的凭证错误、包名冲突、版本已存在、依赖不符合 registry 要求。
+
+**识别方式**：GitHub Release 或 tag 已经存在，但制品库查不到对应版本，或者 release CI 中 publish job 失败。
+
+**处理方式**：
+
+1. 查看 release CI 日志，确认失败原因。
+   ```bash
+   gh run list --limit 5
+   gh run view <run-id> --log
+   ```
+
+2. 修复凭证、包元数据、依赖来源或 workflow。
+
+3. 重新走项目支持的发布流程。已接入 `qtcloud-devops` 的项目不要直接绕过工具发布：
+   ```bash
+   qtcloud-devops release publish -v cli/v0.3.2 --registry crates -y
+   ```
+
+如果 registry 已经成功发布同一版本，不能覆盖该版本；应评估是否发补丁版本。
+
+## 七、二进制资产缺失
+
+GitHub Release 已创建，但 Linux、Windows、macOS 安装包或其他附件缺失时，不能把二进制交付目标视为完成。
+
+**识别方式**：
+
+```bash
+gh release view cli/v0.3.2 --json tagName,url,assets
+```
+
+**处理方式**：
+
+1. 查看构建资产的 CI job 是否失败。
+2. 修复构建脚本或上传路径。
+3. 补建资产并上传到同一个 Release。
+4. 在发布记录中说明哪些资产是补建的。
+
+## 八、容器镜像缺失或标签错误
+
+后端服务常见问题是 Git tag 和镜像 tag 不一致，或者 Release 成功但镜像仓库没有对应版本。
+
+**识别方式**：
+
+```bash
+docker manifest inspect ghcr.io/<org>/<image>:<version>
+```
+
+**处理方式**：
+
+1. 确认镜像 tag 应与发布版本一致。
+2. 查看镜像构建和推送 CI。
+3. 修复后重新运行发布流程或补跑镜像发布 job。
+4. 不要用 `latest` 代替缺失的版本号镜像。
+
+## 九、废弃的 Draft Release 污染
 
 早期开发阶段创建的 Draft Release 不遵循 scope 前缀约定（如 `0.1.0-beta.1`、`0.1.0-beta.2`），且可能缺少 `v` 前缀。这些 Draft Release 没有对应的 tag，但会被自动化扫描误认为是根级别发布。
 
@@ -151,3 +216,14 @@ gh release delete 0.1.0-beta.2 --yes
 git tag -d 0.1.0-beta.1
 git push --delete origin 0.1.0-beta.1
 ```
+
+## 十、部分发布成功
+
+部分成功是最容易误报的状态。例如 GitHub Release 已经有了，但 crates.io 没有；registry 有了，但二进制资产没有。
+
+**处理方式**：
+
+1. 按 [发布审计](audit.md) 列出每个发布目标。
+2. 分别标注成功、失败、未覆盖。
+3. 只汇报已经成功的目标，不把部分成功说成全部完成。
+4. 对失败目标执行补建、重跑 CI、发补丁版本或搁置。
