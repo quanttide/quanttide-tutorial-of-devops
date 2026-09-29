@@ -60,7 +60,9 @@ project:
     - title: 阶段
       children:
         - file: stage/plan/index.md
-        - file: stage/test.md
+        - file: stage/test/index.md
+          children:
+            - file: stage/test/practice.md
         - file: stage/release/index.md
           children:
             - file: stage/release/version.md
